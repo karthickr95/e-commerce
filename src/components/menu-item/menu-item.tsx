@@ -14,9 +14,6 @@ const MenuItem = (props: MenuItemProps & RouteComponentProps) => {
 
     const {title, imageUrl, size, linkUrl, history, match} = props
 
-    console.log(match)
-    console.log(`${match.url}${linkUrl}`)
-
     return (
         <div
             className={`menu-item ${size}`}
@@ -30,7 +27,7 @@ const MenuItem = (props: MenuItemProps & RouteComponentProps) => {
                 <span className='subtitle'>SHOP NOW</span>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default withRouter(MenuItem)
