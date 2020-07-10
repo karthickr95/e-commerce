@@ -4,9 +4,9 @@ import './menu-item.styles.scss'
 
 type MenuItemProps = {
     id: number
-    title: string,
-    imageUrl: string,
-    size?: string | undefined,
+    title: string
+    imageUrl: string
+    size?: string | undefined
     linkUrl: string
 }
 
