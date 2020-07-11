@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 
 import './sign-in.styles.scss'
 
-import FormInput from "../form-input/form-input";
-import CustomButton from "../custom-button/custom-button";
+import FormInput from "../form-input/form-input"
+import CustomButton from "../custom-button/custom-button"
+
+import {signInWithGoogle} from "../../firebase/firebase-utils"
 
 const SignIn = () => {
 
@@ -47,7 +49,10 @@ const SignIn = () => {
                     value={user.password}
                     handleChange={handleInputChange}
                 />
-                <CustomButton type="submit">Sign In</CustomButton>
+                <div className="buttons">
+                    <CustomButton type="submit">Sign In</CustomButton>
+                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google{''}</CustomButton>
+                </div>
             </form>
         </div>
     );
