@@ -47,8 +47,6 @@ class App extends React.Component<AppProps, AppState> {
                         }
                     })
                 })
-
-                console.log(this.state)
             } else {
                 this.setState({
                     currentUser: null

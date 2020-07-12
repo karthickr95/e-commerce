@@ -5,7 +5,7 @@ import './sign-in.styles.scss'
 import FormInput from "../form-input/form-input"
 import CustomButton from "../custom-button/custom-button"
 
-import {signInWithGoogle} from "../../firebase/firebase-utils"
+import {auth, signInWithGoogle} from "../../firebase/firebase-utils"
 
 const SignIn = () => {
 
@@ -14,13 +14,17 @@ const SignIn = () => {
         password: ''
     })
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        setUser({
-            email: '',
-            password: ''
-        })
+        const {email, password} = user
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password)
+            setUser({email: '', password: ''})
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
