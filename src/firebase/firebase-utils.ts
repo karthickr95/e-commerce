@@ -24,4 +24,27 @@ export const auth = firebase.auth()
 export const firestore = firebase.firestore()
 export default firebase
 
+export const createUserProfileDocument = async (userAuth: firebase.User, displayNameOptional?: string): Promise<firebase.firestore.DocumentReference> => {
+    const userRef = firestore.doc(`users/${userAuth.uid}`)
+    const snapShot = await userRef.get()
+
+    if (!snapShot.exists){
+        const displayName = userAuth.displayName ? userAuth.displayName : displayNameOptional
+        const email = userAuth.email
+        const createdAt = new Date()
+
+        try {
+            await userRef.set({
+                display_name: displayName,
+                email: email,
+                created_at: createdAt
+            }).then(() => console.log('success'))
+        } catch (e){
+            console.log('Error creating user', e.message)
+        }
+    }
+
+    return userRef
+}
+
 export const signInWithGoogle = () => auth.signInWithPopup(provider)

@@ -7,7 +7,12 @@ import {ReactComponent as Logo} from '../../assets/crown.svg'
 import firebase, {auth} from '../../firebase/firebase-utils'
 
 type HeaderProps = {
-    currentUser: firebase.User | null
+    currentUser: {
+        id: string
+        displayName: string
+        createdAt: Date
+        email: string
+    } | null
 }
 
 const Header = (props: HeaderProps) => {
