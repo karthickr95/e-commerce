@@ -1,21 +1,16 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import './header.styles.scss'
-import {ReactComponent as Logo} from '../../assets/crown.svg'
+import { ReactComponent as Logo } from '../../assets/crown.svg'
 
-import firebase, {auth} from '../../firebase/firebase-utils'
+import { auth } from '../../firebase/firebase-utils'
+import { AppState } from '../../redux/store'
 
-type HeaderProps = {
-    currentUser: {
-        id: string
-        displayName: string
-        createdAt: Date
-        email: string
-    } | null
-}
+const Header = () => {
 
-const Header = (props: HeaderProps) => {
+    const currentUser = useSelector<AppState>(state => state.user.currentUser)
 
     const signOutUser = () => {
         auth.signOut()
@@ -30,13 +25,13 @@ const Header = (props: HeaderProps) => {
                 <Link className='option' to='/shop'>SHOP</Link>
                 <Link className='option' to='/contact'>CONTACT</Link>
                 {
-                    props.currentUser
+                    currentUser
                         ? <div className='option' onClick={signOutUser}>SIGN OUT</div>
                         : <Link className='option' to='/signin'>SIGN IN</Link>
                 }
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header
