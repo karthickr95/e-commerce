@@ -11,10 +11,11 @@ import ShopPage from './pages/shoppage/shoppage'
 
 import { AppState } from './redux/store'
 import { useFirebaseAuth } from './custom-hooks/auth-state-change-hook'
+import { User } from './types/types'
 
 const App = () => {
 
-    const currentUser = useSelector<AppState>(state => state.user.currentUser)
+    const currentUser = useSelector((state:AppState) => state.user.currentUser)
 
     useFirebaseAuth()
 

@@ -13,8 +13,8 @@ import { AppState } from '../../redux/store'
 
 const Header = () => {
 
-    const currentUser = useSelector<AppState>(state => state.user.currentUser)
-    const isCartPopupHidden = useSelector<AppState>(state => state.cart.isHidden)
+    const currentUser = useSelector((state:AppState) => state.user.currentUser)
+    const isCartPopupHidden = useSelector((state:AppState) => state.cart.isHidden)
 
     const signOutUser = () => {
         auth.signOut()
