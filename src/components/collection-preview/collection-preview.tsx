@@ -1,20 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-import CollectionItem from "../collection-item/collection-item";
+import CollectionItem from '../collection-item/collection-item'
 
 import './collection-preview.styles.scss'
+import { Product } from '../../types/types'
 
 type CollectionPreviewProps = {
     title: string,
-    items: {
-        id: number,
-        name: string,
-        imageUrl: string,
-        price: number
-    }[]
+    items: Product[]
 }
 
-const CollectionPreview = ({title, items}: CollectionPreviewProps) => {
+const CollectionPreview = ({ title, items }: CollectionPreviewProps) => {
     return (
         <div className='collection-preview'>
             <h1 className='title'>{title}</h1>
@@ -23,11 +19,11 @@ const CollectionPreview = ({title, items}: CollectionPreviewProps) => {
                     items
                         .filter((item, index) => index < 4)
                         .map(item => (
-                            <CollectionItem key={item.id} {...item} />
+                            <CollectionItem key={item.id} product={item} />
                         ))}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default CollectionPreview;
+export default CollectionPreview
