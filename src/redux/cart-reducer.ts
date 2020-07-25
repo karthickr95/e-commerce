@@ -1,6 +1,19 @@
-import { ADD_CART_ITEM, CartActionTypes, TOGGLE_CART_POPUP } from './action-types'
-import { addProductToCart } from './cart-utils'
 import { CartState } from './state-types'
+
+import {
+    ADD_CART_ITEM,
+    CartActionTypes,
+    CLEAR_ITEM_FROM_CART,
+    REMOVE_CART_ITEM,
+    TOGGLE_CART_POPUP
+} from './action-types'
+
+import {
+    addItemToCart,
+    clearItemFromCart,
+    removeItemFromCart
+} from './cart-utils'
+
 
 const initialState: CartState = {
     isHidden: true,
@@ -19,10 +32,21 @@ const cartReducer = (
             }
         }
         case ADD_CART_ITEM : {
-
             return {
                 ...state,
-                cartItems: addProductToCart(state.cartItems, action.payload)
+                cartItems: addItemToCart(state.cartItems, action.payload)
+            }
+        }
+        case REMOVE_CART_ITEM : {
+            return {
+                ...state,
+                cartItems: removeItemFromCart(state.cartItems, action.payload)
+            }
+        }
+        case CLEAR_ITEM_FROM_CART: {
+            return {
+                ...state,
+                cartItems: clearItemFromCart(state.cartItems, action.payload)
             }
         }
         default:

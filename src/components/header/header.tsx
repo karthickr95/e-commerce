@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+import { selectCurrentUser } from '../../redux/user-selector'
+import { selectIsCartPopupHidden } from '../../redux/cart-selector'
+
 import './header.styles.scss'
 
 import { ReactComponent as Logo } from '../../assets/crown.svg'
@@ -9,12 +12,11 @@ import CartButton from '../cart/cart-button'
 import CartPopup from '../cart/cart-popup'
 
 import { auth } from '../../firebase/firebase-utils'
-import { AppState } from '../../redux/store'
 
 const Header = () => {
 
-    const currentUser = useSelector((state:AppState) => state.user.currentUser)
-    const isCartPopupHidden = useSelector((state:AppState) => state.cart.isHidden)
+    const currentUser = useSelector(selectCurrentUser)
+    const isCartPopupHidden = useSelector(selectIsCartPopupHidden)
 
     const signOutUser = () => {
         auth.signOut()

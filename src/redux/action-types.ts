@@ -15,6 +15,8 @@ export type UserActionTypes = SetCurrentUserAction
 
 export const TOGGLE_CART_POPUP = 'toggle_cart_popup'
 export const ADD_CART_ITEM = 'add_cart_item'
+export const REMOVE_CART_ITEM = 'remove_cart_item'
+export const CLEAR_ITEM_FROM_CART = 'clear_item_from_cart'
 
 type ToggleCartPopupAction = {
     type: typeof TOGGLE_CART_POPUP
@@ -25,7 +27,17 @@ type AddCartItemAction = {
     payload: Product
 }
 
-export type CartActionTypes = ToggleCartPopupAction | AddCartItemAction
+type RemoveCartItemAction = {
+    type: typeof REMOVE_CART_ITEM
+    payload: Product
+}
+
+type ClearItemFromCartAction = {
+    type: typeof CLEAR_ITEM_FROM_CART
+    payload: Product
+}
+
+export type CartActionTypes = ToggleCartPopupAction | AddCartItemAction | RemoveCartItemAction | ClearItemFromCartAction
 
 /*-------------------------------------------------------------------------*/
 
