@@ -1,10 +1,6 @@
 import { ADD_CART_ITEM, CartActionTypes, TOGGLE_CART_POPUP } from './action-types'
-import { CartProduct } from '../types/types'
-
-type CartState = {
-    isHidden: boolean
-    cartItems: CartProduct[]
-}
+import { addProductToCart } from './cart-utils'
+import { CartState } from './state-types'
 
 const initialState: CartState = {
     isHidden: true,
@@ -24,30 +20,9 @@ const cartReducer = (
         }
         case ADD_CART_ITEM : {
 
-            const existingCartItem = state.cartItems.find(item => item.product.id === action.payload.id)
-
-            const newItems = (): CartProduct[] => {
-                if (existingCartItem) {
-                    return state.cartItems.map(item => {
-                        if (item.product.id === action.payload.id) {
-                            return {
-                                product: item.product,
-                                quantity: item.quantity + 1
-                            }
-                        }
-                        return item
-                    })
-                }
-
-                return [...state.cartItems, {
-                    product: action.payload,
-                    quantity: 1
-                }]
-            }
-
             return {
                 ...state,
-                cartItems: newItems()
+                cartItems: addProductToCart(state.cartItems, action.payload)
             }
         }
         default:
