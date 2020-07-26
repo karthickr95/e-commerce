@@ -1,13 +1,8 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import logger from 'redux-logger'
+import { persistStore } from 'redux-persist'
 
-import userReducer from "./user-reducer"
-import cartReducer from './cart-reducer'
-
-const rootReducer = combineReducers({
-    user: userReducer,
-    cart: cartReducer
-})
+import rootReducer from './root-reducer'
 
 const middlewares = [logger]
 
@@ -16,6 +11,8 @@ const store = createStore(
     applyMiddleware(...middlewares)
 )
 
+const persistor = persistStore(store)
+
 export type AppState = ReturnType<typeof rootReducer>
 
-export default store
+export { store, persistor }
