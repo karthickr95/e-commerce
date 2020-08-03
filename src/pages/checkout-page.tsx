@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 
-import { selectCartItems, selectCartTotalPrice } from '../redux/cart-selector'
+import { selectCartItems, selectCartTotalPrice } from '../redux/cart/cart-selector'
 
 import CheckoutItem from '../components/checkout-item/checkout-item'
 import StripeCheckoutButton from '../components/stripe-checkout-button/stripe-checkout-button'

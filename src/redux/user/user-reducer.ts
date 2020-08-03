@@ -1,5 +1,9 @@
+import { User } from '../../types/types'
 import { SET_CURRENT_USER, UserActionTypes } from './action-types'
-import { UserState } from './state-types'
+
+type UserState = {
+    currentUser: User | null
+}
 
 const initialState: UserState = {
     currentUser: null

@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { selectCurrentUser } from '../../redux/user-selector'
-import { selectIsCartPopupHidden } from '../../redux/cart-selector'
+import { selectCurrentUser } from '../../redux/user/user-selector'
+import { selectIsCartPopupHidden } from '../../redux/cart/cart-selector'
 
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import CartButton from '../cart/cart-button'

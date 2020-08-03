@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import CollectionPreview from '../collection-preview/collection-preview'
 
-import { selectShopCollectionsForPreview } from '../../redux/shop-selector'
+import { selectShopCollectionsForPreview } from '../../redux/shop/shop-selector'
 
 const CollectionsOverviewContainer = styled.div`
   display: flex;

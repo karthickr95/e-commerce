@@ -4,10 +4,11 @@ import { useDispatch } from 'react-redux'
 
 import { CartProduct } from '../../types/types'
 
-import { removeItemFromCartAction,
+import {
+    removeItemFromCartAction,
     clearItemFromCartAction,
     addItemToCartAction
-} from '../../redux/actions'
+} from '../../redux/cart/actions'
 
 const CheckoutItemContainer = styled.div`
   width: 100%;

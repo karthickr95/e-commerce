@@ -1,5 +1,11 @@
-import { CollectionState } from './state-types'
 import { ShopActionTypes } from './action-types'
+import { Collection } from '../../types/types'
+
+type CollectionState = {
+    collections: {
+        [key: string]: Collection
+    }
+}
 
 const initialState: CollectionState = {
     collections: {

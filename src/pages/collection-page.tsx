@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { RouteComponentProps } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { selectCollection } from '../redux/shop-selector'
+import { selectCollection } from '../redux/shop/shop-selector'
 
 import CollectionItem from '../components/collection-item/collection-item'
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { auth, createUserProfileDocument } from '../firebase/firebase-utils'
-import { addUserAction } from '../redux/actions'
+import { addUserAction } from '../redux/user/actions'
 import { User } from '../types/types'
 
 export const useFirebaseAuth = () => {

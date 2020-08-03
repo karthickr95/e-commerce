@@ -1,5 +1,9 @@
-import { DirectoryState } from './state-types'
 import { DirectoryActionTypes } from './action-types'
+import { Directory } from '../../types/types'
+
+type DirectoryState = {
+    sections: Directory[]
+}
 
 const initialState: DirectoryState = {
     sections:[

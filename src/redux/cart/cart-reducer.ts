@@ -1,14 +1,16 @@
-import { CartState } from './state-types'
-import { CartProduct, Product } from '../types/types'
-
+import { CartProduct, Product } from '../../types/types'
 import {
-    CartActionTypes,
     ADD_CART_ITEM,
     CLEAR_ITEM_FROM_CART,
     REMOVE_CART_ITEM,
-    TOGGLE_CART_POPUP
+    TOGGLE_CART_POPUP,
+    CartActionTypes
 } from './action-types'
 
+export type CartState = {
+    isHidden: boolean
+    cartItems: CartProduct[]
+}
 
 const initialState: CartState = {
     isHidden: true,

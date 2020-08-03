@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { Product } from '../../types/types'
 
-import { addItemToCartAction } from '../../redux/actions'
+import { addItemToCartAction } from '../../redux/cart/actions'
 
 import { InvertedButton } from '../button/button'
 

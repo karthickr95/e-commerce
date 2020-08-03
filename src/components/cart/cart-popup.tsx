@@ -6,8 +6,8 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import CartItem from './cart-item'
 import { NormalButton } from '../button/button'
 
-import { toggleCartPopupAction } from '../../redux/actions'
-import { selectCartItems } from '../../redux/cart-selector'
+import { toggleCartPopupAction } from '../../redux/cart/actions'
+import { selectCartItems } from '../../redux/cart/cart-selector'
 
 const CartPopupContainer = styled.div`
   position: absolute;

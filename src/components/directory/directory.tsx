@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 
-import { selectDirectorySections } from '../../redux/directory-selector'
+import { selectDirectorySections } from '../../redux/directory/directory-selector'
 
 import MenuItem from '../menu-item/menu-item'
 

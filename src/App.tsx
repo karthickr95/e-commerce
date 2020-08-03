@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectCurrentUser } from './redux/user-selector'
+import { selectCurrentUser } from './redux/user/user-selector'
 
 import './App.css'
 

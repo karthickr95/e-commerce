@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 import { ReactComponent as ShoppingBagSVG } from '../../assets/shopping-bag.svg'
 
-import { toggleCartPopupAction } from '../../redux/actions'
-import { selectCartItemsCount } from '../../redux/cart-selector'
+import { toggleCartPopupAction } from '../../redux/cart/actions'
+import { selectCartItemsCount } from '../../redux/cart/cart-selector'
 
 const CartButtonContainer = styled.div`
   width: 45px;
