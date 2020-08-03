@@ -1,6 +1,68 @@
-import React from 'react';
-import {withRouter, RouteComponentProps} from 'react-router-dom'
-import './menu-item.styles.scss'
+import React from 'react'
+import styled from 'styled-components'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
+
+const MenuItemContainer = styled.div<{ size?: string | undefined }>`
+	height: ${({ size }) => (size ? '380px' : '240px')};
+	min-width: 30%;
+	overflow: hidden;
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid black;
+	margin: 0 7.5px 15px;
+	
+	&:hover {
+		cursor: pointer;
+		& .background-image {
+			transform: scale(1.1);
+			transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+		}
+		& .content {
+			opacity: 0.9;
+		}
+	}
+	&:first-child {
+    margin-right: 7.5px;
+  }
+  &:last-child {
+    margin-left: 7.5px;
+  }
+`
+
+const BackgroundImageContainer = styled.div<{ imageUrl: string }>`
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+`
+
+const ContentContainer = styled.div`
+  height: 90px;
+  padding: 0 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  background-color: white;
+  opacity: 0.7;
+  position: absolute;
+`
+
+const ContentTitle = styled.span`
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 22px;
+  color: #4a4a4a;
+`
+
+const ContentSubtitle = styled.span`
+  font-weight: lighter;
+  font-size: 16px;
+`
 
 type MenuItemProps = {
     id: number
@@ -12,21 +74,19 @@ type MenuItemProps = {
 
 const MenuItem = (props: MenuItemProps & RouteComponentProps) => {
 
-    const {title, imageUrl, size, linkUrl, history, match} = props
+    const { title, imageUrl, size, linkUrl, history, match } = props
 
     return (
-        <div
-            className={`menu-item ${size}`}
+        <MenuItemContainer
+            size={size}
             onClick={() => history.push(`${match.url}${linkUrl}`)}
         >
-            <div className='background-image' style={{
-                backgroundImage: `url(${imageUrl})`
-            }} />
-            <div className='content'>
-                <h1 className='title'>{title.toUpperCase()}</h1>
-                <span className='subtitle'>SHOP NOW</span>
-            </div>
-        </div>
+            <BackgroundImageContainer imageUrl={imageUrl} />
+            <ContentContainer>
+                <ContentTitle>{title.toUpperCase()}</ContentTitle>
+                <ContentSubtitle>SHOP NOW</ContentSubtitle>
+            </ContentContainer>
+        </MenuItemContainer>
     )
 }
 

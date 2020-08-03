@@ -1,24 +1,31 @@
-import React from 'react';
-import './directory.styles.scss'
+import React from 'react'
+import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 
 import { selectDirectorySections } from '../../redux/directory-selector'
 
-import MenuItem from "../menu-item/menu-item";
+import MenuItem from '../menu-item/menu-item'
+
+const DirectoryMenuContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
 
 const Directory = () => {
 
     const directorySections = useSelector(selectDirectorySections)
 
     return (
-        <div>
-            <div className='directory-menu'>{
+        <DirectoryMenuContainer>
+            {
                 directorySections.map(section =>
                     <MenuItem key={section.id} {...section} />
                 )
-            }</div>
-        </div>
-    );
-};
+            }
+        </DirectoryMenuContainer>
+    )
+}
 
-export default Directory;
+export default Directory

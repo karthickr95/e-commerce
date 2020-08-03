@@ -1,11 +1,26 @@
 import React, {useState} from 'react'
-
-import './sign-in.styles.scss'
-
-import FormInput from "../form-input/form-input"
-import CustomButton from "../custom-button/custom-button"
+import styled from 'styled-components'
 
 import {auth, signInWithGoogle} from "../../firebase/firebase-utils"
+
+import FormInput from "../form-input/form-input"
+import { NormalButton } from '../button/button'
+import { GoogleSignInButton } from '../button/button'
+
+const SignInContainer = styled.div`
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+`
+
+const SignInTitle = styled.h2`
+  margin: 10px 0;
+`
+
+const ButtonsBarContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const SignIn = () => {
 
@@ -32,8 +47,8 @@ const SignIn = () => {
     }
 
     return (
-        <div className='sign-in'>
-            <h2 className="title">I already have an account</h2>
+        <SignInContainer>
+            <SignInTitle>I already have an account</SignInTitle>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
                 <FormInput
@@ -53,12 +68,12 @@ const SignIn = () => {
                     value={user.password}
                     handleChange={handleInputChange}
                 />
-                <div className="buttons">
-                    <CustomButton type="submit">Sign In</CustomButton>
-                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google{''}</CustomButton>
-                </div>
+                <ButtonsBarContainer>
+                    <NormalButton type="submit">Sign In</NormalButton>
+                    <GoogleSignInButton onClick={signInWithGoogle}>Sign in with Google{''}</GoogleSignInButton>
+                </ButtonsBarContainer>
             </form>
-        </div>
+        </SignInContainer>
     );
 };
 

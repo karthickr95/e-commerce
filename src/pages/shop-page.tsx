@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, RouteComponentProps } from 'react-router-dom'
 
-import CollectionOverview from '../../components/collections-overview/collection-overview'
-import CollectionPage from '../collection-page/collection-page'
+import CollectionOverview from '../components/collections-overview/collection-overview'
+import CollectionPage from './collection-page'
 
 const ShopPage = ({ match }: RouteComponentProps) => {
 

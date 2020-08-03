@@ -1,19 +1,22 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 
-import './collection-overview.styles.scss'
-
 import CollectionPreview from '../collection-preview/collection-preview'
+
 import { selectShopCollectionsForPreview } from '../../redux/shop-selector'
 
-type CollectionOverviewProps = {}
+const CollectionsOverviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
-const CollectionOverview = (props: CollectionOverviewProps) => {
+const CollectionOverview = () => {
 
     const collections = useSelector(selectShopCollectionsForPreview)
 
     return (
-        <div className='collection-overview'>
+        <CollectionsOverviewContainer>
             {
                 collections.map((collection) => (
                     <CollectionPreview
@@ -23,7 +26,7 @@ const CollectionOverview = (props: CollectionOverviewProps) => {
                     />
                 ))
             }
-        </div>
+        </CollectionsOverviewContainer>
     )
 }
 

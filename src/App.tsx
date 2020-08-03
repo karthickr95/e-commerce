@@ -6,10 +6,10 @@ import { selectCurrentUser } from './redux/user-selector'
 import './App.css'
 
 import Header from './components/header/header'
-import HomePage from './pages/homepage/homepage'
-import SignInRegisterPage from './pages/sign-in-register-page/sign-in-register-page'
-import ShopPage from './pages/shoppage/shoppage'
-import CheckoutPage from './pages/checkout-page/checkout-page'
+import HomePage from './pages/home-page'
+import SignInRegisterPage from './pages/sign-in-register-page'
+import ShopPage from './pages/shop-page'
+import CheckoutPage from './pages/checkout-page'
 
 import { useFirebaseAuth } from './custom-hooks/auth-state-change-hook'
 

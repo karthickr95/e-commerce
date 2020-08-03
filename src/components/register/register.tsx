@@ -1,11 +1,20 @@
 import React, {useState} from 'react'
-
-import './register.styles.scss'
-
-import FormInput from "../form-input/form-input"
-import CustomButton from "../custom-button/custom-button"
+import styled from 'styled-components'
 
 import {auth, createUserProfileDocument} from "../../firebase/firebase-utils"
+
+import { NormalButton } from '../button/button'
+import FormInput from "../form-input/form-input"
+
+const RegisterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+`
+
+const RegisterTitle = styled.h2`
+  margin: 10px 0;
+`
 
 type RegisterState = {
     displayName: string
@@ -17,10 +26,10 @@ type RegisterState = {
 const Register = () => {
 
     const [registerState, setRegisterState] = useState<RegisterState>({
-        confirmPassword: "",
-        displayName: "",
-        email: "",
-        password: ""
+        confirmPassword: '',
+        displayName: '',
+        email: '',
+        password: ''
     })
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -56,10 +65,10 @@ const Register = () => {
     }
 
     return (
-        <div className='register'>
-            <h2 className="title">I do not have account</h2>
+        <RegisterContainer>
+            <RegisterTitle>I do not have account</RegisterTitle>
             <span>Sign up with your email and password</span>
-            <form className="register-form" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FormInput
                     type='text'
                     name='displayName'
@@ -92,11 +101,10 @@ const Register = () => {
                     handleChange={handleInputChange}
                     label='Confirm Password'
                 />
-                <CustomButton type='submit'>Register</CustomButton>
+                <NormalButton type='submit'>Register</NormalButton>
             </form>
+        </RegisterContainer>
+    )
+}
 
-        </div>
-    );
-};
-
-export default Register;
+export default Register

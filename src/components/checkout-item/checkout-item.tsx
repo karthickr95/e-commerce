@@ -1,10 +1,51 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 
-import './checkout-item.styles.scss'
-
 import { CartProduct } from '../../types/types'
-import { removeItemFromCartAction, clearItemFromCartAction, addItemToCartAction } from '../../redux/actions'
+
+import { removeItemFromCartAction,
+    clearItemFromCartAction,
+    addItemToCartAction
+} from '../../redux/actions'
+
+const CheckoutItemContainer = styled.div`
+  width: 100%;
+  display: flex;
+  min-height: 100px;
+  border-bottom: 1px solid darkgrey;
+  padding: 15px 0;
+  font-size: 20px;
+  align-items: center;
+`
+
+const ImageContainer = styled.div`
+  width: 23%;
+  padding-right: 15px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`
+
+const TextContainer = styled.span`
+  width: 23%;
+`
+
+const QuantityContainer = styled(TextContainer)`
+  display: flex;
+  span {
+    margin: 0 10px;
+  }
+  div {
+    cursor: pointer;
+  }
+`
+
+const RemoveButton = styled.div`
+  padding-left: 12px;
+  cursor: pointer;
+`
 
 type CheckoutItemProps = {
     item: CartProduct
@@ -17,12 +58,12 @@ const CheckoutItem = (props: CheckoutItemProps) => {
     const dispatch = useDispatch()
 
     return (
-        <div className='checkout-item'>
-            <div className='image-container'>
+        <CheckoutItemContainer>
+            <ImageContainer>
                 <img src={imageUrl} alt='item' />
-            </div>
-            <span className='name'>{name}</span>
-            <div className='quantity'>
+            </ImageContainer>
+            <TextContainer>{name}</TextContainer>
+            <QuantityContainer>
                 <div className='arrow' onClick={() => dispatch(removeItemFromCartAction(product))}>
                     &#10094;
                 </div>
@@ -30,12 +71,12 @@ const CheckoutItem = (props: CheckoutItemProps) => {
                 <div className='arrow' onClick={() => dispatch(addItemToCartAction(product))}>
                     &#10095;
                 </div>
-            </div>
-            <span className='price'>{price}</span>
-            <div className='remove-button' onClick={() => dispatch(clearItemFromCartAction(product))}>
+            </QuantityContainer>
+            <TextContainer>{price}</TextContainer>
+            <RemoveButton onClick={() => dispatch(clearItemFromCartAction(product))}>
                 &#10005;
-            </div>
-        </div>
+            </RemoveButton>
+        </CheckoutItemContainer>
     )
 }
 

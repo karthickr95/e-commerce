@@ -1,17 +1,44 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { selectCurrentUser } from '../../redux/user-selector'
 import { selectIsCartPopupHidden } from '../../redux/cart-selector'
 
-import './header.styles.scss'
-
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import CartButton from '../cart/cart-button'
 import CartPopup from '../cart/cart-popup'
 
 import { auth } from '../../firebase/firebase-utils'
+
+const HeaderContainer = styled.div`
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+`
+
+const LogoContainer = styled(Link)`
+  height: 100%;
+  width: 70px;
+  padding: 25px;
+`
+
+const OptionsContainer = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`
+
+const OptionLink = styled(Link)`
+  padding: 10px 15px;
+  cursor: pointer;
+`
+
 
 const Header = () => {
 
@@ -23,24 +50,24 @@ const Header = () => {
     }
 
     return (
-        <div className='header'>
-            <Link className='logo-container' to='/'>
+        <HeaderContainer>
+            <LogoContainer to='/'>
                 <Logo className='logo' />
-            </Link>
-            <div className='options'>
-                <Link className='option' to='/shop'>SHOP</Link>
-                <Link className='option' to='/contact'>CONTACT</Link>
+            </LogoContainer>
+            <OptionsContainer>
+                <OptionLink to='/shop'>SHOP</OptionLink>
+                <OptionLink to='/contact'>CONTACT</OptionLink>
                 {
                     currentUser
-                        ? <div className='option' onClick={signOutUser}>SIGN OUT</div>
-                        : <Link className='option' to='/signin'>SIGN IN</Link>
+                        ? <OptionLink as='div' onClick={signOutUser}>SIGN OUT</OptionLink>
+                        : <OptionLink to='/signin'>SIGN IN</OptionLink>
                 }
                 <CartButton />
-            </div>
+            </OptionsContainer>
             {
                 isCartPopupHidden ? null : <CartPopup />
             }
-        </div>
+        </HeaderContainer>
     )
 }
 
