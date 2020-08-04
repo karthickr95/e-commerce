@@ -1,29 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Route, RouteComponentProps } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import CollectionOverview from '../components/collections-overview/collection-overview'
 import CollectionPage from './collection-page'
 import withSpinner from '../components/hoc/with-spinner/with-spinner'
 
-import { firestore, getCollectionsFromCollectionsSnapshot } from '../firebase/firebase-utils'
-
-import { updateCollectionsAction } from '../redux/shop/actions'
+import { fetchCollectionsStartAsync } from '../redux/shop/actions'
+import { selectIsCollectionFetching } from '../redux/shop/shop-selector'
 
 const ShopPage = ({ match }: RouteComponentProps) => {
 
+    const isCollectionsFetching = useSelector(selectIsCollectionFetching)
+
     const dispatch = useDispatch()
 
-    const [isLoading, setLoading] = useState<boolean>(true)
-
     useEffect(() => {
-        const collectionRef = firestore.collection('collections')
-        collectionRef.get().then(snapshot => {
-            const collectionsMap = getCollectionsFromCollectionsSnapshot(snapshot)
-            dispatch(updateCollectionsAction(collectionsMap))
-            setLoading(false)
-        })
-
+        dispatch(fetchCollectionsStartAsync())
     }, [])
 
     const CollectionOverviewWithSpinner = withSpinner(CollectionOverview)
@@ -35,18 +28,17 @@ const ShopPage = ({ match }: RouteComponentProps) => {
                 exact
                 path={`${match.path}`}
                 render={(props) =>
-                    <CollectionOverviewWithSpinner isLoading={isLoading} {...props} />
+                    <CollectionOverviewWithSpinner isLoading={isCollectionsFetching} {...props} />
                 }
             />
             <Route
                 path={`${match.path}/:collectionId`}
                 render={(props) =>
-                    <CollectionPageWithSpinner isLoading={isLoading} {...props} />
+                    <CollectionPageWithSpinner isLoading={isCollectionsFetching} {...props} />
                 }
             />
         </div>
     )
-
 }
 
 export default ShopPage

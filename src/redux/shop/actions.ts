@@ -1,7 +1,36 @@
+import { ThunkAction } from 'redux-thunk'
 import { Collection } from '../../types/types'
-import { UpdateCollectionsAction } from './action-types'
+import {
+    FetchCollectionsFailureAction,
+    FetchCollectionsStartAction,
+    FetchCollectionsSuccessAction
+} from './action-types'
 
-export const updateCollectionsAction = (collections: { [key: string]: Collection }): UpdateCollectionsAction => ({
-    type: 'UPDATE_COLLECTIONS',
+import { firestore, getCollectionsFromCollectionsSnapshot } from '../../firebase/firebase-utils'
+
+const fetchCollectionsStart = (): FetchCollectionsStartAction => ({
+    type: 'FETCH_COLLECTIONS_START'
+})
+
+const fetchCollectionsSuccess = (collections: { [key: string]: Collection }): FetchCollectionsSuccessAction => ({
+    type: 'FETCH_COLLECTIONS_SUCCESS',
     payload: collections
 })
+
+const fetchCollectionsFailure = (error: string): FetchCollectionsFailureAction => ({
+    type: 'FETCH_COLLECTIONS_FAILURE',
+    payload: error
+})
+
+export const fetchCollectionsStartAsync = (): ThunkAction<any, any, any, any> => dispatch => {
+    const collectionRef = firestore.collection('collections')
+    dispatch(fetchCollectionsStart())
+
+    collectionRef
+        .get()
+        .then(snapshot => {
+            const collectionsMap = getCollectionsFromCollectionsSnapshot(snapshot)
+            dispatch(fetchCollectionsSuccess(collectionsMap))
+        })
+        .catch(error => dispatch(fetchCollectionsFailure(error.message)))
+}
