@@ -1,11 +1,5 @@
 import { CartProduct, Product } from '../../types/types'
-import {
-    ADD_CART_ITEM,
-    CLEAR_ITEM_FROM_CART,
-    REMOVE_CART_ITEM,
-    TOGGLE_CART_POPUP,
-    CartActionTypes
-} from './action-types'
+import { CartActionTypes } from './action-types'
 
 export type CartState = {
     isHidden: boolean
@@ -22,25 +16,25 @@ const cartReducer = (
     action: CartActionTypes
 ): CartState => {
     switch (action.type) {
-        case TOGGLE_CART_POPUP : {
+        case 'TOGGLE_CART_POPUP' : {
             return {
                 ...state,
                 isHidden: !state.isHidden
             }
         }
-        case ADD_CART_ITEM : {
+        case 'ADD_CART_ITEM' : {
             return {
                 ...state,
                 cartItems: addItemToCart(state.cartItems, action.payload)
             }
         }
-        case REMOVE_CART_ITEM : {
+        case 'REMOVE_CART_ITEM' : {
             return {
                 ...state,
                 cartItems: removeItemFromCart(state.cartItems, action.payload)
             }
         }
-        case CLEAR_ITEM_FROM_CART: {
+        case 'CLEAR_ITEM_FROM_CART': {
             return {
                 ...state,
                 cartItems: clearItemFromCart(state.cartItems, action.payload)

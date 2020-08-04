@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import CollectionItem from '../collection-item/collection-item'
 
 import { Product } from '../../types/types'
+import { RouteComponentProps } from 'react-router-dom'
 
 const CollectionPreviewContainer = styled.div`
   display: flex;
@@ -12,6 +13,7 @@ const CollectionPreviewContainer = styled.div`
 `
 
 const TitleContainer = styled.h1`
+  text-transform: uppercase;
   font-size: 28px;
   margin-bottom: 25px;
   cursor: pointer;
@@ -25,24 +27,24 @@ const PreviewContainer = styled.div`
   justify-content: space-between;
 `
 
-
-
 type CollectionPreviewProps = {
     title: string,
     items: Product[]
+    routeName: string
 }
 
-const CollectionPreview = ({ title, items }: CollectionPreviewProps) => {
+const CollectionPreview = ({ title, items, match, history, routeName  }: CollectionPreviewProps & RouteComponentProps) => {
     return (
         <CollectionPreviewContainer>
-            <TitleContainer>{title}</TitleContainer>
+            <TitleContainer onClick={() => history.push(`${match.path}/${routeName}`)}>{title}</TitleContainer>
             <PreviewContainer>
                 {
                     items
                         .filter((item, index) => index < 4)
                         .map(item => (
                             <CollectionItem key={item.id} product={item} />
-                        ))}
+                        ))
+                }
             </PreviewContainer>
         </CollectionPreviewContainer>
     )

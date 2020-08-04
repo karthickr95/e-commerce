@@ -11,7 +11,7 @@ import SignInRegisterPage from './pages/sign-in-register-page'
 import ShopPage from './pages/shop-page'
 import CheckoutPage from './pages/checkout-page'
 
-import { useFirebaseAuth } from './custom-hooks/auth-state-change-hook'
+import { useFirebaseAuth } from './hooks/auth-state-change-hook'
 
 const App = () => {
 

@@ -1,8 +1,12 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { auth, createUserProfileDocument } from '../firebase/firebase-utils'
+
 import { addUserAction } from '../redux/user/actions'
+
 import { User } from '../types/types'
+
 
 export const useFirebaseAuth = () => {
 
@@ -17,8 +21,8 @@ export const useFirebaseAuth = () => {
 
                     const user: User = {
                         id: snapshot.id,
-                        createdAt: snapshot.data()?.created_at.toDate(),
-                        displayName: snapshot.data()?.display_name,
+                        createdAt: snapshot.data()?.createdAt.toDate(),
+                        displayName: snapshot.data()?.displayName,
                         email: snapshot.data()?.email
                     }
 

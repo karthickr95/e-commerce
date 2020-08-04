@@ -1,7 +1,10 @@
-export const ADD_SHOP_ITEM = 'ADD_SHOP_ITEM'
+import { Collection } from '../../types/types'
 
-type AddShopItemAction = {
-    type: typeof ADD_SHOP_ITEM
+const UPDATE_COLLECTIONS = 'UPDATE_COLLECTIONS'
+
+export type UpdateCollectionsAction = {
+    type: typeof UPDATE_COLLECTIONS
+    payload: { [key: string]: Collection }
 }
 
-export type ShopActionTypes = AddShopItemAction
+export type ShopActionTypes = UpdateCollectionsAction

@@ -14,7 +14,7 @@ export type Directory = {
 }
 
 export type Collection = {
-    id: number,
+    id: string,
     title: string,
     routeName: string,
     items: Product[]
