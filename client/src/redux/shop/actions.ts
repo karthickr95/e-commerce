@@ -8,16 +8,16 @@ import {
 
 import { firestore, getCollectionsFromCollectionsSnapshot } from '../../firebase/firebase-utils'
 
-const fetchCollectionsStart = (): FetchCollectionsStartAction => ({
+export const fetchCollectionsStart = (): FetchCollectionsStartAction => ({
     type: 'FETCH_COLLECTIONS_START'
 })
 
-const fetchCollectionsSuccess = (collections: { [key: string]: Collection }): FetchCollectionsSuccessAction => ({
+export const fetchCollectionsSuccess = (collections: { [key: string]: Collection }): FetchCollectionsSuccessAction => ({
     type: 'FETCH_COLLECTIONS_SUCCESS',
     payload: collections
 })
 
-const fetchCollectionsFailure = (error: string): FetchCollectionsFailureAction => ({
+export const fetchCollectionsFailure = (error: string): FetchCollectionsFailureAction => ({
     type: 'FETCH_COLLECTIONS_FAILURE',
     payload: error
 })
