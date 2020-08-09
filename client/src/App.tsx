@@ -3,13 +3,13 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from './redux/user/user-selector'
 
-import './App.css'
-
 import Header from './components/header/header'
 import HomePage from './pages/home-page'
 import SignInRegisterPage from './pages/sign-in-register-page'
 import ShopPage from './pages/shop-page'
 import CheckoutPage from './pages/checkout-page'
+
+import { GlobalStyle } from './global-styles'
 
 import { useFirebaseAuth } from './hooks/auth-state-change-hook'
 
@@ -21,6 +21,7 @@ const App = () => {
 
     return (
         <div>
+            <GlobalStyle />
             <Header />
             <Switch>
                 <Route exact path='/' component={HomePage} />

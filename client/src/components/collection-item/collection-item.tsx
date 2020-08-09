@@ -26,6 +26,20 @@ const CollectionItemContainer = styled.div`
       display: flex;
     }
   }
+  
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+    
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+
+      button {
+        opacity: unset;
+      }
+    }
+  }
 `
 
 const AddButton = styled(InvertedButton)`
@@ -34,6 +48,13 @@ const AddButton = styled(InvertedButton)`
   position: absolute;
   top: 255px;
   display: none;
+  
+  @media screen and (max-width: 800px) {
+    display: block;
+    opacity: 0.9;
+    min-width: unset;
+    padding: 0 10px;
+  }
 `
 
 const BackgroundImage = styled.div<{ imageUrl: string }>`
