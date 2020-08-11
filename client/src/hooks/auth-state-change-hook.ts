@@ -7,7 +7,6 @@ import { addUserAction } from '../redux/user/actions'
 
 import { User } from '../types/types'
 
-
 export const useFirebaseAuth = () => {
 
     const dispatch = useDispatch()
