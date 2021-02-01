@@ -35,7 +35,6 @@ const LogoContainer = styled(Link)`
       width: 50px;
       padding: 0;
   }
-  
 `
 
 const OptionsContainer = styled.div`
