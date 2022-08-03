@@ -14,7 +14,7 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "firebase": "^7.17.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
